@@ -4,19 +4,41 @@ A Clojure library designed to ... well, that part is up to you.
 
 ## Usage
 
-FIXME
+Build the plugin:
+`lein install`
+
+Add a plugin reference in your project.clj:
+```
+:plugins [[canvas "0.1.0"]]
+```
+
+Run the plugin (in another project):
+`lein canvas`
+
+Sample output:
+```
+Testing toy-robot.core-test
+
+Testing toy-robot.parser-test
+
+Ran 8 tests containing 14 assertions.
+0 failures, 0 errors.
+{toy-robot.core
+ {play {:scope :public, :line 65, :tested? true, :hit 5},
+  stdin->commands {:scope :public, :line 87, :tested? false, :hit 0},
+  go {:scope :private, :line 55, :tested? true, :hit 30},
+  valid? {:scope :private, :line 48, :tested? true, :hit 24},
+  file->commands {:scope :public, :line 76, :tested? false, :hit 0},
+  stdin->line-seq {:scope :private, :line 82, :tested? false, :hit 0}},
+ toy-robot.main
+ {-main {:scope :public, :line 6, :tested? false, :hit 0}},
+ toy-robot.parser
+ {line->command {:scope :public, :line 8, :tested? true, :hit 9},
+  is-digit? {:scope :private, :line 4, :tested? true, :hit 2},
+  lines->commands {:scope :public, :line 30, :tested? false, :hit 0}}}
+```
 
 ## License
 
-Copyright © 2019 FIXME
+Copyright © 2019 Alfred Xiao
 
-This program and the accompanying materials are made available under the
-terms of the Eclipse Public License 2.0 which is available at
-http://www.eclipse.org/legal/epl-2.0.
-
-This Source Code may also be made available under the following Secondary
-Licenses when the conditions for such availability set forth in the Eclipse
-Public License, v. 2.0 are satisfied: GNU General Public License as published by
-the Free Software Foundation, either version 2 of the License, or (at your
-option) any later version, with the GNU Classpath Exception which is available
-at https://www.gnu.org/software/classpath/license.html.
