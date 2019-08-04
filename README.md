@@ -1,21 +1,22 @@
 # canvas
 
-A Clojure library designed to ... well, that part is up to you.
+A Clojure leiningen plugin that reports on test coverage.
 
 ## Usage
 
-Build the plugin:
+### Build the plugin:
 `lein install`
 
-Add a plugin reference in your project.clj:
+### Add a plugin reference in your project.clj:
 ```
+:local-repo "/Users/alfredxiao/.m2/repository"
 :plugins [[canvas "0.1.0"]]
 ```
 
-Run the plugin (in another project):
+### Run the plugin (in another project):
 `lein canvas`
 
-Sample output:
+### Sample output:
 ```
 Testing toy-robot.core-test
 
