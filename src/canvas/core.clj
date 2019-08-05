@@ -11,11 +11,8 @@
 (defn- instrument
   [f v]
   (fn [& args]
-    (log-info "canvas: meta before instrumentation" (meta v))
     (alter-meta! v assoc ::tested? true)
     (alter-meta! v update ::hit inc)
-    (log-info "canvas: meta after instrumentation" (meta v))
-    (log-info "canvas: executing instrumented function " f)
     (apply f args)))
 
 (defn- instrumentable?
@@ -70,6 +67,10 @@
                                          :tested? (::tested? mt)
                                          :hit     (::hit mt)})]))])))
 
+(defn- doseq-with [values op]
+  (doseq [v values]
+    (op v)))
+
 (defn evaluate-test-coverage
   [{:keys [source-paths test-paths] :as opts}]
   (let [target-nz (apply concat (->> source-paths
@@ -78,13 +79,10 @@
         test-nz (apply concat (->> test-paths
                                    (map io/file)
                                    (map ns-find/find-namespaces-in-dir)))]
-    (doseq [n target-nz]
-      (require n))
-    (doseq [tn test-nz]
-      (require tn))
+    (doseq-with target-nz require)
+    (doseq-with test-nz require)
     (try
-      (doseq [ns target-nz]
-        (instrument-ns! ns))
+      (doseq-with target-nz instrument-ns!)
       (apply clojure.test/run-tests test-nz)
       (pprint (report target-nz))
       (finally
