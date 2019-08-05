@@ -2,7 +2,7 @@
   (:require [clojure.test]
             [clojure.string :refer [starts-with? ends-with?]]
             [clojure.tools.namespace.find :as ns-find]
-            [clojure.pprint]
+            [clojure.pprint :refer [pprint]]
             [clojure.java.io :as io]))
 
 (defn- log-info [& msgs]
@@ -71,8 +71,8 @@
                                          :hit     (::hit mt)})]))])))
 
 (defn evaluate-test-coverage
-  [src-paths test-paths]
-  (let [target-nz (apply concat (->> src-paths
+  [{:keys [source-paths test-paths] :as opts}]
+  (let [target-nz (apply concat (->> source-paths
                                      (map io/file)
                                      (map ns-find/find-namespaces-in-dir)))
         test-nz (apply concat (->> test-paths
@@ -86,6 +86,6 @@
       (doseq [ns target-nz]
         (instrument-ns! ns))
       (apply clojure.test/run-tests test-nz)
-      (clojure.pprint/pprint (report target-nz))
+      (pprint (report target-nz))
       (finally
         (mapv uninstrument-ns! target-nz)))))
