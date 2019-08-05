@@ -55,9 +55,12 @@
   (doseq [ns nss]
     (apply-to-each-var uninstrument-var! ns)))
 
+(defn- user? [ns]
+  (= "user" (name (ns-name ns))))
+
 (defn report [nz]
   (into {}
-        (for [n nz]
+        (for [n nz :when (not (user? n))]
           [(ns-name n)
            (into {}
                  (for [[_ v] (ns-interns n) :when (instrumentable? v)]
@@ -69,8 +72,7 @@
 
 (defn evaluate-test-coverage
   [src-paths test-paths]
-  (let [all-nz (all-ns)
-        target-nz (apply concat (->> src-paths
+  (let [target-nz (apply concat (->> src-paths
                                      (map io/file)
                                      (map ns-find/find-namespaces-in-dir)))
         test-nz (apply concat (->> test-paths
