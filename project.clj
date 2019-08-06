@@ -6,5 +6,7 @@
   :dependencies [[org.clojure/clojure "1.10.1"]
                  [org.clojure/tools.reader "1.3.2"]
                  [org.clojure/tools.namespace "0.3.1"]]
+  :deploy-repositories {"clojars" {:url "https://clojars.org/repo"
+                                   :sign-releases false}}
   :eval-in-leiningen true
   :repl-options {:init-ns canvas.core})
