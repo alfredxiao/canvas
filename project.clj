@@ -1,4 +1,4 @@
-(defproject canvas "0.1.2"
+(defproject canvas "0.1.6"
   :description "Clojure plugin for leiningen that reports on test coverage."
   :url "https://github.com/alfredxiao/canvas"
   :license {:name "EPL-2.0 OR GPL-2.0-or-later WITH Classpath-exception-2.0"
