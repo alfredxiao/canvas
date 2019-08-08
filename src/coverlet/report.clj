@@ -1,5 +1,5 @@
-(ns canvas.report
-  (:require [canvas.instrument :as ins]))
+(ns coverlet.report
+  (:require [coverlet.instrument :as ins]))
 
 (defn- user? [ns]
   (= "user" (name (ns-name ns))))
@@ -10,8 +10,8 @@
                             (map count)
                             (apply max))
         nsname-fmt-str (str "  %s %-" (inc max-nsname-len) "s%s")
-        max-chars-per-line (+ max-nsname-len 11)
-        title " Canvas Test Coverage Report "
+        max-chars-per-line (+ max-nsname-len 20)
+        title " Coverlet Test Coverage Report "
         half-long-equal-sign (apply str (repeat (/ (- max-chars-per-line
                                                       (count title))
                                                    2)
@@ -36,8 +36,8 @@
                                              [(:name (meta v)) (let [mt (meta v)]
                                                                  {:private (:private mt)
                                                                   :line    (:line mt)
-                                                                  :tested? (:canvas.instrument/tested? mt)
-                                                                  :hit     (:canvas.instrument/hit mt)})]))]
+                                                                  :tested? (:coverlet.instrument/tested? mt)
+                                                                  :hit     (:coverlet.instrument/hit mt)})]))]
                         (when-not (empty? ns-stats)
                           [(ns-name n) ns-stats]))))]
     (case reporter
