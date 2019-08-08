@@ -1,4 +1,4 @@
-(ns canvas.instrument)
+(ns coverlet.instrument)
 
 (defn- instrument
   [f v]

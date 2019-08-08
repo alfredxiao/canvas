@@ -1,9 +1,9 @@
-(ns canvas.core
+(ns coverlet.core
   (:require [clojure.test]
             [clojure.tools.namespace.find :as ns-find]
             [clojure.java.io :as io]
-            [canvas.instrument :as ins]
-            [canvas.report :refer [report]]))
+            [coverlet.instrument :as ins]
+            [coverlet.report :refer [report]]))
 
 (defn- doseq-with [values op]
   (doseq [v values]

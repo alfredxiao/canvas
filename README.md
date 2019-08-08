@@ -1,19 +1,19 @@
-# canvas
+# coverlet
 
 A Clojure leiningen plugin that reports on test coverage.
 
 ## Usage
 
 ### Latest Version
-`[canvas "0.1.2"]`
+`[coverlet "0.1.2"]`
 
 ### Add a plugin reference in your project.clj:
 ```
-:plugins [[canvas "0.1.2"]]
+:plugins [[coverlet "0.1.2"]]
 ```
 
 ### Run the plugin (in another project):
-`lein canvas`
+`lein coverlet`
 
 ### Sample output:
 
