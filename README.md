@@ -5,11 +5,11 @@ A Clojure leiningen plugin that reports on test coverage.
 ## Usage
 
 ### Latest Version
-`[coverlet "0.1.2"]`
+`[coverlet "0.1.7"]`
 
 ### Add a plugin reference in your project.clj:
 ```
-:plugins [[coverlet "0.1.2"]]
+:plugins [[coverlet "0.1.7"]]
 ```
 
 ### Run the plugin (in another project):
