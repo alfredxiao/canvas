@@ -30,14 +30,14 @@
       (alter-meta! v dissoc ::original)
       (alter-var-root v (constantly root)))))
 
-(defn apply-to-each-var [f ns]
+(defn apply-each-var [f ns]
   (doseq [[_ v] (ns-interns ns)]
     (f v)))
 
-(defn instrument-ns! [& nz]
-  (doseq [n nz]
-    (apply-to-each-var instrument-var! n)))
+(defn instrument-ns! [& nss]
+  (doseq [ns nss]
+    (apply-each-var instrument-var! ns)))
 
 (defn uninstrument-ns! [& nss]
   (doseq [ns nss]
-    (apply-to-each-var uninstrument-var! ns)))
+    (apply-each-var uninstrument-var! ns)))

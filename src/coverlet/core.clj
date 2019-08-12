@@ -5,18 +5,19 @@
             [coverlet.instrument :as ins]
             [coverlet.report :refer [report]]))
 
-(defn- doseq-with [values op]
+(defn- doseq-with [values f]
   (doseq [v values]
-    (op v)))
+    (f v)))
+
+(defn- paths->nss [paths]
+  (apply concat (->> paths
+                     (map io/file)
+                     (map ns-find/find-namespaces-in-dir))))
 
 (defn evaluate-test-coverage
   [{:keys [source-paths test-paths reporter]}]
-  (let [target-nss (apply concat (->> source-paths
-                                     (map io/file)
-                                     (map ns-find/find-namespaces-in-dir)))
-        test-nss (apply concat (->> test-paths
-                                   (map io/file)
-                                   (map ns-find/find-namespaces-in-dir)))]
+  (let [target-nss (paths->nss test-paths)
+        test-nss (paths->nss source-paths)]
     (doseq-with target-nss require)
     (doseq-with test-nss require)
     (try
