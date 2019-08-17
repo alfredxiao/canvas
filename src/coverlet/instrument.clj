@@ -23,8 +23,7 @@
 
 (defn uninstrument-var! [v]
   (when (instrumentable? v)
-    (let [root (::original (meta v))]
-      (assert root "No root binding to restore!")
+    (when-let [root (::original (meta v))]
       (alter-meta! v dissoc ::tested?)
       (alter-meta! v dissoc ::hit)
       (alter-meta! v dissoc ::original)
