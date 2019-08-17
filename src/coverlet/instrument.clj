@@ -1,3 +1,5 @@
+;; Below approach of instrumentation is referencing https://github.com/technomancy/radagast
+
 (ns coverlet.instrument)
 
 (defn- instrument
