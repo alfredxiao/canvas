@@ -2,6 +2,9 @@
 
 A Clojure leiningen plugin that reports on test coverage.
 
+## Presentation
+http://tiny.cc/coverlet
+
 ## Usage
 
 ### Latest Version
